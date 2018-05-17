@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--
+Laura Davis CIS 370 
+JavaScript Program #5
+This program uses JavaScript to create a form
+that takes input from a user and calculates a
+total with tax to be printed in an alert box
+after the form is submitted.
+-->
+
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>JavaScript #4 Laura Davis</title>
+    
+<meta name="viewport" content="width-device-width, initial-scale=1.0">
+    </head>
+    
+    <body>
+    <style>
+        body {
+            background-color: bisque;
+        }
+    </style>
+    
+    <h1>This grocery order form was designed by Laura Davis</h1>
+    <h2>Type the quantities of each item you would like to purchase in the text boxes below</h2>
+    
+    <form name = "orderForm" onsubmit = "finish()" action="#" autocomplete="off">
+      <p>
+      <label> <input type = "text" name = "milk"  
+                     size = "3"
+                     onchange = "milkHandler()" />
+      Low Fat Milk ($3.19 per gallon)
+      </label>
+      </p><br>
+        
+        <p>
+      <label> <input type = "text" name = "egg"  
+                     size = "3"
+                     onchange = "eggHandler()" />
+      Cage Free Organic Eggs ($3.55 per dozen)
+      </label>
+      </p><br>
+        
+        <p>
+      <label> <input type = "text" name = "bread"  
+                     size = "3"
+                     onchange = "breadHandler()" />
+      Whole Wheat Bread ($3.49 per loaf)
+      </label>
+      </p><br>
+        
+        <p>
+      <label> <input type = "text" name = "juice"  
+                     size = "3"
+                     onchange = "juiceHandler()" />
+      Fresh Squeezed Grapefruit Juice ($4.49 per half gallon)
+      </label>
+      </p><br>
+        
+        <p>
+      <label> <input type = "text" name = "honey"  
+                     size = "3"
+                     onchange = "honeyHandler()"/>
+      Home Grown Honey ($6.59 per pint)
+      </label>
+      </p><br>
+        
+        <!--For reset, the event onclick="total=0" was added to ensure that the form reset properly
+            For submit, the event onclick="form.reset()" was added to clear the form after submit was executed-->
+        <input type="reset" value="Reset" onclick="total=0">
+        <input type="submit" value="Submit" onclick="form.reset()">
+
+    </form>
+
+    <script>
+        /*Variable declarations and initializations */
+        var total = 0;
+        
+        /*Uses an event handler to handle the milk section on the form */
+        function milkHandler() {
+                var number = document.orderForm.milk.value;
+                total = total + number * 3.19;
+
+        }//end of milkHandler()
+        
+        /*Uses an event handler to handle the egg section on the form */
+        function eggHandler() {
+                var number = document.orderForm.egg.value;
+                total = total + number * 3.55;
+        }//end of eggHandler()
+        
+        /*Uses an event handler to handle the bread section on the form */
+        function breadHandler() {
+                var number = document.orderForm.bread.value;
+                total = total + number * 3.49;
+        }//end of breadHandler
+        
+        /*Uses an event handler to handle the juice section on the form */
+        function juiceHandler() {
+                var number = document.orderForm.juice.value;
+                total = total + number * 4.49;
+        }//end of juiceHandler
+        
+        /*Uses an event handler to handle the honey section on the form */
+        function honeyHandler() {
+                var number = document.orderForm.honey.value;
+                total = total + number * 6.59;
+        }//end of honeyHandler
+        
+        /*The function is called by pressing the submit button. It calculates the tax
+        and prints the total cost of the order with an alert message box.
+        The total must be reset to 0 at the end of the function in order for the reset() on 
+        submit to work properly*/
+        function finish() {
+            total = total * 1.076;
+            alert("Thank you for your order \n" +
+            "Your total cost is: $" + total.toFixed(2) + "\n")
+            total = 0;
+        }//end of finish()
+        
+    </script>
+            
+    </body>
+</html>
